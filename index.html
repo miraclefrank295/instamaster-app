@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InstaMaster</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+* {box-sizing:border-box}
+body {
+  margin:0;
+  padding:20px;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+  color:white;
+}
+header {text-align:center;padding:25px 0}
+.logo {font-size:45px}
+h1 {font-size:30px;margin:10px}
+.subtitle {opacity:.85}
+.container {
+  background:white;
+  color:#222;
+  border-radius:20px;
+  padding:20px;
+}
+input {
+  width:100%;
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  margin:12px 0;
+}
+button {
+  border:0;
+  border-radius:12px;
+  padding:16px;
+  background:linear-gradient(90deg,#833ab4,#fd1d1d);
+  color:white;
+  font-weight:bold;
+  width:100%;
+  margin-bottom:12px;
+}
+.grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:20px;
+}
+.card {
+  background:#fff0f5;
+  color:#333;
+  padding:20px 8px;
+  border-radius:15px;
+  text-align:center;
+  font-weight:bold;
+}
+footer {
+  text-align:center;
+  padding:20px;
+  font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">📸</div>
+<h1>InstaMaster</h1>
+<p class="subtitle">Your Personal Instagram Assistant</p>
+</header>
+
+<div class="container">
+
+<h2>👋 Welcome!</h2>
+<p>What would you like to do today?</p>
+
+<input id="iglink"
+placeholder="Paste a public Instagram link">
+
+<button onclick="openLink()">
+📥 Open Instagram Link
+</button>
+
+<div class="grid">
+
+<div class="card" onclick="feature('Reels Downloader')">
+📥<br>Reels Downloader
+</div>
+
+<div class="card" onclick="feature('Photo Downloader')">
+🖼️<br>Photo Downloader
+</div>
+
+<div class="card" onclick="feature('Profile Checker')">
+👤<br>Profile Checker
+</div>
+
+<div class="card" onclick="feature('Account Statistics')">
+📊<br>Statistics
+</div>
+
+<div class="card" onclick="feature('Follower Tracker')">
+📈<br>Follower Tracker
+</div>
+
+<div class="card" onclick="feature('Post Notifications')">
+🔔<br>Notifications
+</div>
+
+</div>
+
+<p id="message"></p>
+
+</div>
+
+<footer>
+InstaMaster © 2026<br>
+Personal Instagram Assistant
+</footer>
+
+<script>
+const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand();
+
+function openLink() {
+  const link = document.getElementById("iglink").value.trim();
+
+  if (!/^https:\/\/(www\.)?instagram\.com\//i.test(link)) {
+    alert("Please enter a valid Instagram link.");
+    return;
+  }
+
+  window.open(link, "_blank");
+}
+
+function feature(name) {
+  document.getElementById("message").innerText =
+    name + " will be connected in the next setup stage.";
+}
+</script>
+
+</body>
+</html>
